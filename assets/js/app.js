@@ -380,31 +380,49 @@
     modalBody.scrollTop = 0;
   }
 
+  // Groups matching bullets by experience (several bullets from the same
+  // role show up as one group, each bullet still individually clickable)
+  // and returns personal-project matches separately. "count" is the total
+  // number of individual occurrences, for the "Shows up in N places" line.
   function relatedItemsForSkill(skillId) {
-    const items = [];
+    const experienceGroups = [];
     D.experience.forEach((exp) => {
-      exp.bullets.forEach((b, idx) => {
-        if (b.skills.includes(skillId)) {
-          items.push({ kind: "experience", id: exp.id, bulletIndex: idx, label: "Experience", title: exp.title, snippet: b.text });
-        }
-      });
-    });
-    D.personalProjects.forEach((p) => {
-      if (p.skills.includes(skillId)) {
-        items.push({ kind: "personal", id: p.id, label: "Beyond the job", title: p.title });
+      const bullets = exp.bullets
+        .map((b, idx) => ({ text: b.text, bulletIndex: idx }))
+        .filter((b, idx) => exp.bullets[idx].skills.includes(skillId));
+      if (bullets.length) {
+        experienceGroups.push({ expId: exp.id, title: exp.title, org: exp.org, period: exp.period, bullets });
       }
     });
-    return items;
+    const personal = D.personalProjects.filter((p) => p.skills.includes(skillId));
+    const count = experienceGroups.reduce((n, g) => n + g.bullets.length, 0) + personal.length;
+    return { experienceGroups, personal, count };
   }
 
-  function relatedCardsHTML(items) {
-    if (!items.length) return `<p>Nothing else to show here yet.</p>`;
-    return `<div class="modal-related">${items.map((it) => `
-      <button type="button" class="related-card" data-open="${it.kind}" data-open-id="${it.id}"${it.bulletIndex !== undefined ? ` data-bullet-index="${it.bulletIndex}"` : ""}>
-        <div class="rc-kind">${it.label}</div>
-        <div class="rc-title">${it.title}</div>
-        ${it.snippet ? `<div class="rc-snippet">${it.snippet}</div>` : ""}
-      </button>`).join("")}</div>`;
+  function relatedCardsHTML({ experienceGroups, personal }) {
+    if (!experienceGroups.length && !personal.length) return `<p>Nothing else to show here yet.</p>`;
+    const groupsHTML = experienceGroups.map((g) => `
+      <div class="related-group">
+        <div class="related-group-head">
+          <span class="rc-kind">Experience</span>
+          <span class="related-group-title">${g.title}</span>
+          <span class="related-group-meta">${g.org} · ${g.period}</span>
+        </div>
+        <div class="related-group-bullets">
+          ${g.bullets.map((b) => `
+            <button type="button" class="related-bullet" data-open="experience" data-open-id="${g.expId}" data-bullet-index="${b.bulletIndex}">
+              <span class="bullet-dot"></span><span>${b.text}</span>
+            </button>`).join("")}
+        </div>
+      </div>`).join("");
+    const personalHTML = personal.map((p) => `
+      <button type="button" class="related-group related-group-link" data-open="personal" data-open-id="${p.id}">
+        <div class="related-group-head">
+          <span class="rc-kind">Beyond the job</span>
+          <span class="related-group-title">${p.title}</span>
+        </div>
+      </button>`).join("");
+    return `<div class="modal-related">${groupsHTML}${personalHTML}</div>`;
   }
 
   function renderPersonalModal(p) {
@@ -425,11 +443,11 @@
     if (!s) return;
     byId("modal-kicker").textContent = catLabel(D.skillCategories, s.categoryId);
     byId("modal-title").textContent = s.name;
-    const items = relatedItemsForSkill(s.id);
+    const related = relatedItemsForSkill(s.id);
     modalBody.innerHTML = `
       <p>${s.blurb}</p>
-      <h4>Shows up in ${items.length} place${items.length === 1 ? "" : "s"}</h4>
-      ${relatedCardsHTML(items)}
+      <h4>Shows up in ${related.count} place${related.count === 1 ? "" : "s"}</h4>
+      ${relatedCardsHTML(related)}
     `;
     bindModalInternalEvents();
   }
