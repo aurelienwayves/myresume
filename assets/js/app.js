@@ -240,13 +240,15 @@
   function renderEducation() {
     byId("education-list").innerHTML = D.education.map((e, ei) => `
       <div class="education-item">
-        <div>
-          <div class="edu-school">${e.school}</div>
-          <div class="edu-degree">${e.degree}</div>
-          ${e.intro ? `<p class="edu-intro">${e.intro}</p>` : ""}
-          ${e.courses && e.courses.length ? `<div class="edu-focus skill-chips">${e.courses.map((c, ci) => courseChipHTML(ei, ci, c)).join("")}</div>` : ""}
+        <div class="edu-head">
+          <div>
+            <div class="edu-school">${e.school}</div>
+            <div class="edu-degree">${e.degree}</div>
+          </div>
+          <span class="edu-period">${e.period}</span>
         </div>
-        <span class="edu-period">${e.period}</span>
+        ${e.intro ? `<p class="edu-intro">${e.intro}</p>` : ""}
+        ${e.courses && e.courses.length ? `<div class="edu-focus skill-chips">${e.courses.map((c, ci) => courseChipHTML(ei, ci, c)).join("")}</div>` : ""}
       </div>
     `).join("");
 
@@ -422,7 +424,7 @@
     if (!course) return;
     byId("modal-kicker").textContent = `${edu.school} coursework`;
     byId("modal-title").textContent = course.name;
-    modalBody.innerHTML = `<p>${course.description}</p>`;
+    modalBody.innerHTML = `<ul class="course-list">${course.bullets.map((b) => `<li>${b}</li>`).join("")}</ul>`;
   }
 
   function bindModalInternalEvents() {

@@ -173,7 +173,7 @@ const SITE_DATA = {
       org: "Legrand Australia",
       period: "Jan 2024 - Dec 2025",
       location: "Sydney, Australia",
-      context: "Galaxy, Legrand's connected emergency-lighting platform for the AU/NZ market: 250+ SKUs live in the field, reporting to the R&D Director. Full-stack, safety-critical scope: embedded nodes (firmware over LoRa/BLE), gateways, a companion <a href=\"https://apps.apple.com/au/app/galaxy-cels/id1403414890\" target=\"_blank\" rel=\"noopener\">iOS app</a>, and a Linux/Docker cloud backend, delivered across three international R&D centres.",
+      context: "Galaxy, Legrand's connected emergency-lighting platform for the AU/NZ market: 250+ SKUs live in the field, reporting to the R&D Director. Full-stack, safety-critical scope: embedded nodes (firmware over LoRa/BLE), gateways, a companion <a href=\"https://apps.apple.com/au/app/galaxy-cels/id1403414890\" target=\"_blank\" rel=\"noopener\">iOS app</a>, and a Linux/Docker cloud backend, delivered across three international R&D centres. See the <a href=\"https://assets.legrand.com/webf/au/au_en_Galaxy%20Brochure.pdf\" target=\"_blank\" rel=\"noopener\">product brochure (PDF)</a>.",
       bullets: [
         { text: "Owned programme delivery for two years across R&D, Sales, Technical Service, Marketing, Operations and Finance: feature roadmap, sprint prioritisation, field validation and release governance (RASCI), for a safety-critical connected platform.", skills: ["governance-rasci", "program-management", "stakeholder-mgmt", "iot-connected"] },
         { text: "Built and led a small technical team, including two direct-report interns, and a full release-readiness matrix aligned to the AS/NZS2293 emergency-lighting standard, working with Quality/Compliance on battery, electrical safety, radio and EMC test reports for every board/firmware variant before release.", skills: ["cross-functional", "npi", "risk-management", "technical-leadership", "regulatory-standards"] },
@@ -246,9 +246,11 @@ const SITE_DATA = {
 
   // --------------------------------------------------------------------
   // 7. EDUCATION. Each degree has an "intro" (what the degree is) and a
-  //    list of "courses" (name + description). Courses are deliberately
-  //    kept separate from the professional skills above: clicking one
-  //    just shows what it covered, it doesn't claim it as a job skill.
+  //    list of "courses". Courses are kept broad on purpose (the label
+  //    stays discreet), and each one expands into specific bullets on
+  //    click. They're deliberately separate from the professional skills
+  //    above: clicking one just shows what it covered, it doesn't claim
+  //    it as a job skill.
   // --------------------------------------------------------------------
   education: [
     {
@@ -257,11 +259,44 @@ const SITE_DATA = {
       period: "2020 - 2023",
       intro: "A generalist electronics and telecommunications engineering degree with a specialisation in embedded systems and IoT, covering hardware, firmware, wireless communications and applied signal processing.",
       courses: [
-        { name: "Embedded Systems & RTOS", description: "ARM Cortex architecture, microcontroller programming, FPGA (VHDL), and real-time operating systems." },
-        { name: "IoT & Low-Power Networks", description: "Low-power wide-area protocols (LoRaWAN, Sigfox), Bluetooth Low Energy, and connected sensor networks." },
-        { name: "Edge AI & TinyML", description: "Deploying and optimising machine learning models on embedded, resource-constrained targets." },
-        { name: "Signal & Image Processing", description: "Digital signal processing, image processing and computer vision fundamentals." },
-        { name: "RF & Telecommunications", description: "Digital communications, antennas, wave propagation, and RF/microwave systems." }
+        {
+          name: "Embedded Systems",
+          bullets: [
+            "ARM Cortex architecture and register-level programming",
+            "Assembly and low-level C",
+            "C++ and Python for embedded and data tooling",
+            "Microcontroller peripherals: I2C, SPI, UART",
+            "FPGA fundamentals (VHDL)",
+            "Real-time operating systems (RTOS)"
+          ]
+        },
+        {
+          name: "Artificial Intelligence",
+          bullets: [
+            "Neural network fundamentals: architecture, training, backpropagation",
+            "Edge AI and TinyML: running models on constrained hardware",
+            "Low-level optimisation for embedded inference",
+            "Computer vision and image processing basics"
+          ]
+        },
+        {
+          name: "Digital Signal Processing",
+          bullets: [
+            "Time-domain and frequency-domain analysis (Fourier transforms)",
+            "Digital filtering and noise reduction",
+            "Sampling, quantisation and signal quality",
+            "Applied DSP on embedded targets"
+          ]
+        },
+        {
+          name: "Wireless & Telecommunications",
+          bullets: [
+            "Low-power wide-area networks: LoRaWAN, Sigfox",
+            "Bluetooth Low Energy and connected sensor networks",
+            "RF fundamentals, antennas and wave propagation",
+            "Digital communications and network protocols"
+          ]
+        }
       ]
     },
     {
@@ -270,10 +305,22 @@ const SITE_DATA = {
       period: "Oct 2021 - Jul 2023",
       intro: "A general management Master's covering finance, strategy, leadership and marketing: the business half of a dual engineering/MBA-equivalent profile.",
       courses: [
-        { name: "Finance & Management Control", description: "Cost accounting, financial analysis, budgeting and technology ROI calculations." },
-        { name: "Strategy & Organisation", description: "Strategic diagnostics, innovation management, change management and value-chain management." },
-        { name: "Leadership & People Management", description: "Cross-functional and multicultural team leadership, conflict management and labour law." },
-        { name: "Marketing & Business Law", description: "B2B marketing for technology products, negotiation, and contract/IP law." }
+        {
+          name: "Finance & Management Control",
+          bullets: ["Cost and management accounting", "Financial statement analysis", "Budgeting and forecasting", "Technology ROI and investment appraisal"]
+        },
+        {
+          name: "Strategy & Organisation",
+          bullets: ["Strategic diagnostics (SWOT, five forces)", "Innovation management", "Change management", "Value-chain management"]
+        },
+        {
+          name: "Leadership & People Management",
+          bullets: ["Cross-functional team leadership", "Multicultural team management", "Conflict resolution", "Labour law fundamentals"]
+        },
+        {
+          name: "Marketing & Business Law",
+          bullets: ["B2B marketing for technology products", "Negotiation techniques", "Contract law", "Intellectual property and patents"]
+        }
       ]
     }
   ],
