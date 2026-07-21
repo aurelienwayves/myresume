@@ -67,7 +67,7 @@ const SITE_DATA = {
   // 2. PHOTO — set src once you have a file in assets/img/photo/
   // --------------------------------------------------------------------
   photo: {
-    src: null, // e.g. "assets/img/photo/aurelien.jpg"
+    src: "assets/img/photo/fb726ef0-cb87-423b-9146-da62ddc668b9-enhanced.jpg",
     alt: "Portrait of Aurélien Bertheaume"
   },
 
