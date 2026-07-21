@@ -257,7 +257,7 @@ const SITE_DATA = {
       school: "ENSIL-ENSCI",
       degree: "Engineering Degree, Electronics & Telecommunications",
       period: "2020 - 2023",
-      intro: "A generalist electronics and telecommunications engineering degree with a specialisation in embedded systems and IoT, covering hardware, firmware, wireless communications and applied signal processing.",
+      intro: "A three-year electronics and telecommunications engineering degree: fundamentals in year one (analogue/digital electronics, signal processing, microprocessors), advanced RF, telecom and embedded systems in year two, specialising in year three in Intelligent Embedded Systems & IoT.",
       courses: [
         {
           name: "Embedded Systems",
@@ -266,8 +266,10 @@ const SITE_DATA = {
             "Assembly and low-level C",
             "C++ and Python for embedded and data tooling",
             "Microcontroller peripherals: I2C, SPI, UART",
+            "System on Chip (SoC) design",
             "FPGA fundamentals (VHDL)",
-            "Real-time operating systems (RTOS)"
+            "Real-time operating systems (RTOS)",
+            "Electrical safety certification (Habilitation Électrique)"
           ]
         },
         {
@@ -284,17 +286,21 @@ const SITE_DATA = {
           bullets: [
             "Time-domain and frequency-domain analysis (Fourier transforms)",
             "Digital filtering and noise reduction",
-            "Sampling, quantisation and signal quality",
+            "Random/stochastic signal theory",
+            "Dedicated DSP processor architectures",
             "Applied DSP on embedded targets"
           ]
         },
         {
           name: "Wireless & Telecommunications",
           bullets: [
+            "Antennas, microwave circuits and guided wave propagation",
+            "Cellular network deployment and RF systems",
+            "Electromagnetic compatibility (EMC)",
+            "Optical telecommunications",
             "Bluetooth Low Energy",
             "Zigbee and mesh networking, including a Zigbee stack developed in VHDL",
-            "RF modulation and demodulation",
-            "Antenna design and RF PCB layout"
+            "RF modulation, demodulation and antenna/RF PCB design"
           ]
         }
       ]
