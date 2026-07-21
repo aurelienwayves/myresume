@@ -100,10 +100,13 @@ The site will then be live at `https://aurelienbertheaume.me`.
 ## Project structure
 
 ```
-index.html              page structure (one page, several sections)
-assets/css/style.css    design system (colours, type, components)
+index.html              homepage: compact "newspaper front page" edition
+full.html                full scroll edition (same content, one section per screen)
+assets/css/style.css    shared design system (colours, type, components)
+assets/css/compact.css  layout rules specific to the compact edition
 assets/js/data.js       ALL THE CONTENT — the file to edit
-assets/js/app.js        rendering and interaction logic (shouldn't need edits)
+assets/js/app.js        rendering and interaction logic for full.html
+assets/js/compact.js    rendering and interaction logic for index.html
 assets/img/photo/       your portrait photo
 assets/img/personal/    photos for your personal projects
 assets/video/           (optional) if you'd rather self-host a video file
