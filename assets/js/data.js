@@ -291,10 +291,10 @@ const SITE_DATA = {
         {
           name: "Wireless & Telecommunications",
           bullets: [
-            "Low-power wide-area networks: LoRaWAN, Sigfox",
-            "Bluetooth Low Energy and connected sensor networks",
-            "RF fundamentals, antennas and wave propagation",
-            "Digital communications and network protocols"
+            "Bluetooth Low Energy",
+            "Zigbee and mesh networking, including a Zigbee stack developed in VHDL",
+            "RF modulation and demodulation",
+            "Antenna design and RF PCB layout"
           ]
         }
       ]
@@ -306,20 +306,20 @@ const SITE_DATA = {
       intro: "A general management Master's covering finance, strategy, leadership and marketing: the business half of a dual engineering/MBA-equivalent profile.",
       courses: [
         {
-          name: "Finance & Management Control",
-          bullets: ["Cost and management accounting", "Financial statement analysis", "Budgeting and forecasting", "Technology ROI and investment appraisal"]
-        },
-        {
           name: "Strategy & Organisation",
-          bullets: ["Strategic diagnostics (SWOT, five forces)", "Innovation management", "Change management", "Value-chain management"]
+          bullets: ["Organisational theory and strategic management", "Marketing and sales techniques", "Innovation, creativity and entrepreneurship", "Management workshops and applied consulting projects"]
         },
         {
-          name: "Leadership & People Management",
-          bullets: ["Cross-functional team leadership", "Multicultural team management", "Conflict resolution", "Labour law fundamentals"]
+          name: "Finance & Management Control",
+          bullets: ["General accounting and financial statements", "Financial analysis", "Cost accounting and management control", "Business performance analysis"]
         },
         {
-          name: "Marketing & Business Law",
-          bullets: ["B2B marketing for technology products", "Negotiation techniques", "Contract law", "Intellectual property and patents"]
+          name: "People & Project Management",
+          bullets: ["Human resources management", "Project management and cross-functional team leadership", "Change management", "Cross-cultural management"]
+        },
+        {
+          name: "Business Law & Taxation",
+          bullets: ["Business law", "Employment law and labour relations", "Corporate taxation"]
         }
       ]
     }
