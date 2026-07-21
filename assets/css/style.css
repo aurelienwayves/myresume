@@ -506,8 +506,13 @@ p{ margin: 0 0 1em; color: var(--ink-soft); }
   transition: max-height .32s var(--ease), opacity .25s var(--ease), margin .32s var(--ease);
   margin-left: 1.25em;
 }
-.exp-bullet.is-open .exp-bullet-detail{ max-height: 320px; opacity: 1; margin-bottom: 1rem; }
+.exp-bullet.is-open .exp-bullet-detail{ max-height: 640px; opacity: 1; margin-bottom: 1rem; }
 .exp-bullet-detail .skill-group-label{ margin-bottom: .5rem; }
+.exp-bullet-photo{
+  display: block; width: 100%; max-width: 340px;
+  border-radius: 10px; border: 1px solid var(--line);
+  margin-bottom: 1rem;
+}
 
 .education-block{ margin-top: 2.2rem; transition: box-shadow .3s var(--ease); }
 .education-item{

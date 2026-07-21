@@ -178,6 +178,7 @@
           <span>${bullet.text}</span>
         </button>
         <div class="exp-bullet-detail">
+          ${bullet.image ? `<img class="exp-bullet-photo" src="${bullet.image}" alt="" loading="lazy">` : ""}
           <span class="skill-group-label">Skills &amp; tools</span>
           <div class="skill-chips">${bullet.skills.map((id) => skillChipHTML(id, true)).join("") || "<span class=\"skill-chip is-small is-static\">General</span>"}</div>
         </div>
