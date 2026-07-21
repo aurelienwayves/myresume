@@ -1,5 +1,5 @@
 /**
- * Interactive CV — rendering and interaction logic.
+ * Interactive CV: rendering and interaction logic.
  * All content comes from SITE_DATA (assets/js/data.js).
  * This file shouldn't normally need to change.
  */
@@ -12,7 +12,6 @@
   // Icons
   // --------------------------------------------------------------------
   const ICONS = {
-    skill: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="6"/><circle cx="8" cy="10" r="4"/><circle cx="40" cy="10" r="4"/><circle cx="8" cy="38" r="4"/><circle cx="40" cy="38" r="4"/><path d="M19 20 11 13M29 20l8-7M19 28l-8 7M29 28l8 7"/></svg>',
     beyond: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 41S7 30 7 17.5A9.5 9.5 0 0 1 24 12a9.5 9.5 0 0 1 17 5.5C41 30 24 41 24 41Z"/></svg>',
     external: '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>',
     arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>',
@@ -81,12 +80,12 @@
     byId("photo-initials").textContent = p.initials;
     byId("footer-name").innerHTML = `© <span id="footer-year"></span> ${p.name}`;
     byId("footer-year").textContent = new Date().getFullYear();
-    document.title = `${p.name} — ${p.roles[0]}`;
+    document.title = `${p.name} | ${p.roles[0]}`;
 
     byId("hero-location").lastChild.textContent = " " + p.location;
     byId("pivot-headline").textContent = p.pivotHeadline;
     byId("pivot-note-inline").textContent = p.pivotNote;
-    byId("pivot-callout-text").textContent = `${p.pivotHeadline} — ${p.pivotNote}`;
+    byId("pivot-callout-text").textContent = `${p.pivotHeadline}: ${p.pivotNote}`;
 
     byId("hero-highlights").innerHTML = p.highlights.map((h) => `<span class="chip">${h}</span>`).join("");
     byId("hero-passions").innerHTML = p.passions.map((pas) => `
@@ -168,7 +167,7 @@
   }
 
   // ======================================================================
-  // EXPERIENCE — accordion timeline
+  // EXPERIENCE: accordion timeline
   // ======================================================================
   function experienceBulletHTML(exp, bullet, index) {
     return `
@@ -229,28 +228,31 @@
     setTimeout(() => entry.classList.remove("is-flash"), 1400);
   }
 
-  function jumpToEducation() {
-    const block = document.querySelector(".education-block");
-    if (!block) return;
-    block.scrollIntoView({ behavior: "smooth", block: "center" });
-    block.classList.add("is-flash");
-    setTimeout(() => block.classList.remove("is-flash"), 1400);
+  // ======================================================================
+  // EDUCATION. Courses are standalone (name + description), kept separate
+  // from the professional skill graph on purpose: clicking one just shows
+  // what it covered, not a claim that it's a job-ready skill.
+  // ======================================================================
+  function courseChipHTML(eduIndex, courseIndex, course) {
+    return `<button type="button" class="skill-chip is-small" data-course="${eduIndex}:${courseIndex}">${course.name}</button>`;
   }
 
-  // ======================================================================
-  // EDUCATION
-  // ======================================================================
   function renderEducation() {
-    byId("education-list").innerHTML = D.education.map((e) => `
+    byId("education-list").innerHTML = D.education.map((e, ei) => `
       <div class="education-item">
         <div>
           <div class="edu-school">${e.school}</div>
           <div class="edu-degree">${e.degree}</div>
-          ${e.focus && e.focus.length ? `<div class="edu-focus skill-chips">${e.focus.map((id) => skillChipHTML(id, true)).join("")}</div>` : ""}
+          ${e.intro ? `<p class="edu-intro">${e.intro}</p>` : ""}
+          ${e.courses && e.courses.length ? `<div class="edu-focus skill-chips">${e.courses.map((c, ci) => courseChipHTML(ei, ci, c)).join("")}</div>` : ""}
         </div>
         <span class="edu-period">${e.period}</span>
       </div>
     `).join("");
+
+    document.querySelectorAll("[data-course]").forEach((btn) =>
+      btn.addEventListener("click", () => openModal("course", btn.dataset.course))
+    );
   }
 
   // ======================================================================
@@ -312,7 +314,7 @@
         <div class="reference-who">
           <div>
             <div class="reference-name">${t.name}</div>
-            <div class="reference-role">${t.role} — ${t.relationship}</div>
+            <div class="reference-role">${t.role} · ${t.relationship}</div>
           </div>
           <span class="reference-meta">${t.date}</span>
         </div>
@@ -344,7 +346,7 @@
   }
 
   // ======================================================================
-  // MODAL — 2 modes: personal / skill
+  // MODAL: 3 modes: personal / skill / course
   // ======================================================================
   const modal = byId("detail-modal");
   const modalBody = byId("modal-body");
@@ -352,6 +354,7 @@
   function openModal(mode, id) {
     if (mode === "personal") renderPersonalModal(personalById(id));
     if (mode === "skill") renderSkillModal(skillById(id));
+    if (mode === "course") renderCourseModal(id);
     if (typeof modal.showModal === "function") {
       if (!modal.open) modal.showModal();
     }
@@ -372,11 +375,6 @@
         items.push({ kind: "personal", id: p.id, label: "Beyond the job", title: p.title });
       }
     });
-    D.education.forEach((e) => {
-      if (e.focus && e.focus.includes(skillId)) {
-        items.push({ kind: "education", id: null, label: "Coursework", title: `${e.degree}`, snippet: e.school });
-      }
-    });
     return items;
   }
 
@@ -395,11 +393,11 @@
     byId("modal-kicker").textContent = `Beyond the job · ${p.date}`;
     byId("modal-title").textContent = p.title;
     modalBody.innerHTML = `
-      <div class="modal-figure">${p.image ? `<img src="${p.image}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover">` : ICONS.beyond}</div>
+      ${p.image ? `<div class="modal-figure"><img src="${p.image}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover"></div>` : ""}
       <p><em>${p.excerpt}</em></p>
       ${p.content.map((para) => `<p>${para}</p>`).join("")}
       ${p.url ? `<p><a class="btn btn-ghost" href="${p.url}" target="_blank" rel="noopener">See the original post ${ICONS.external}</a></p>` : ""}
-      ${p.skills.length ? `<h4>Skills involved — click to explore</h4><div class="skill-chips">${p.skills.map((id) => skillChipHTML(id, false)).join("")}</div>` : ""}
+      ${p.skills.length ? `<h4>Skills involved</h4><div class="skill-chips">${p.skills.map((id) => skillChipHTML(id, false)).join("")}</div>` : ""}
     `;
     bindModalInternalEvents();
   }
@@ -410,12 +408,21 @@
     byId("modal-title").textContent = s.name;
     const items = relatedItemsForSkill(s.id);
     modalBody.innerHTML = `
-      <div class="modal-figure">${ICONS.skill}</div>
       <p>${s.blurb}</p>
       <h4>Shows up in ${items.length} place${items.length === 1 ? "" : "s"}</h4>
       ${relatedCardsHTML(items)}
     `;
     bindModalInternalEvents();
+  }
+
+  function renderCourseModal(compoundId) {
+    const [ei, ci] = String(compoundId).split(":").map(Number);
+    const edu = D.education[ei];
+    const course = edu && edu.courses[ci];
+    if (!course) return;
+    byId("modal-kicker").textContent = `${edu.school} coursework`;
+    byId("modal-title").textContent = course.name;
+    modalBody.innerHTML = `<p>${course.description}</p>`;
   }
 
   function bindModalInternalEvents() {
@@ -430,9 +437,6 @@
         } else if (kind === "experience") {
           modal.close();
           jumpToExperienceBullet(btn.dataset.openId, Number(btn.dataset.bulletIndex));
-        } else if (kind === "education") {
-          modal.close();
-          jumpToEducation();
         }
       })
     );
