@@ -1,112 +1,123 @@
-# CV interactif — Aurélien Bertheaume
+# Interactive CV — Aurélien Bertheaume
 
-Site statique (HTML / CSS / JS, aucun framework, aucune dépendance à installer)
-présentant un CV interactif : projets pro, compétences reliées entre elles,
-projets personnels façon articles, vidéo de présentation, posts LinkedIn.
+A static site (HTML / CSS / JS, no framework, nothing to install) built as an
+interactive CV: a chronological experience timeline where every bullet point
+expands to show the skills/tools behind it, with skills cross-linked to every
+other place they show up (other roles, personal projects).
 
-## Voir le site en local
+## Run it locally
 
-Aucune installation nécessaire. Depuis ce dossier :
+No install needed. From this folder:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-puis ouvre http://localhost:8000 dans ton navigateur.
+then open http://localhost:8000 in your browser.
 
-(Ouvrir directement `index.html` en double-cliquant fonctionne aussi dans la
-plupart des cas, mais un petit serveur local évite certains soucis de
-sécurité navigateur.)
+(Double-clicking `index.html` directly usually works too, but a local server
+avoids some browser security quirks.)
 
-## Où modifier le contenu
+## Where to edit content
 
-**Un seul fichier à éditer pour tout le texte : `assets/js/data.js`.**
-La mise en page ne bouge pas — tout se régénère automatiquement depuis ce
-fichier. Chaque bloc `[ENTRE CROCHETS]` est un espace réservé à remplacer.
+**Only one file to edit for all the text: `assets/js/data.js`.**
+The layout never needs to change — everything regenerates from that file.
+Anything written as `[LIKE THIS]` is still a placeholder.
 
-Dans `data.js`, tu trouveras, dans l'ordre :
+In `data.js`, in order:
 
-1. **`profile`** — nom, intitulés de poste (qui défilent en haut de page),
-   accroche, bio (2-3 paragraphes), coordonnées.
-2. **`photo`** — laisse `src: null` pour garder l'avatar avec tes initiales,
-   ou renseigne `src: "assets/img/photo/ton-fichier.jpg"` une fois ta photo
-   ajoutée dans `assets/img/photo/`.
-3. **`video`** — colle un lien YouTube ou Vimeo dans `url`. Tant que c'est
-   vide, un emplacement réservé élégant s'affiche à la place.
-4. **`skillCategories` / `skills`** — la liste de tes compétences, groupées
-   par thème. Chaque compétence a un `id` unique.
-5. **`projects`** — tes projets professionnels. Le champ `skills` (liste
-   d'`id`) relie chaque projet aux compétences utilisées : c'est ce qui
-   permet, en cliquant sur une compétence, de voir tous les autres projets
-   (pro ou perso) qui la mobilisent aussi.
-6. **`personalProjects`** — tes projets perso, présentés façon article
-   (photo + texte). Ajoute tes photos dans `assets/img/personal/` puis
-   référence-les dans `image`.
-7. **`linkedinPosts`** — cartes qui renvoient vers tes vrais posts LinkedIn
-   (l'utilisateur clique et part sur LinkedIn dans un nouvel onglet).
+1. **`profile`** — name, job titles (cycling in the hero), location, tagline,
+   the product-management "pivot" line, bio paragraphs, contact details,
+   highlight chips, and passions (icon + label).
+2. **`photo`** — leave `src: null` to keep the round initials avatar, or set
+   `src: "assets/img/photo/your-file.jpg"` once you've added a photo to
+   `assets/img/photo/`.
+3. **`video`** — paste a YouTube or Vimeo link into `url`. While it's empty,
+   an elegant placeholder shows instead.
+4. **`kpis`** — 3-4 headline numbers shown in the Impact section.
+5. **`skillCategories` / `skills`** — your skills, grouped by theme. Each
+   skill has a unique `id`.
+6. **`experience`** — the core of the CV. Each role has `bullets`, and each
+   bullet has its own `skills` (a list of ids from step 5). That's what
+   drives the whole "click a bullet → see the skills → click a skill → see
+   everywhere else it was used" interaction.
+7. **`education`** — a simple list (school, degree, period).
+8. **`personalProjects`** — real personal/community projects, shown magazine
+   style under "Beyond the Job". Add photos to `assets/img/personal/` and
+   reference them in `image`.
+9. **`linkedinPosts`** — cards linking out to your real LinkedIn posts.
+10. **`references`** — testimonials (quote, name, role, relationship) plus a
+    short note about additional references being available on request.
 
-Après modification, il suffit de recharger la page : aucune compilation
-n'est nécessaire.
+After editing, just reload the page — nothing to build or compile.
 
-## Comment fonctionne la navigation par compétences
+## How the skill cross-linking works
 
-- Chaque carte "projet" et "projet perso" affiche les compétences utilisées.
-- Cliquer sur une compétence (dans une carte, dans un projet ouvert, ou dans
-  la section "Compétences") ouvre une fenêtre listant **tout** ce qui a été
-  fait avec cette compétence — projets pro et perso confondus — avec un
-  lien direct vers chaque réalisation.
+- Every experience bullet lists the skills/tools it took to deliver it.
+- Clicking a bullet reveals those skills inline.
+- Clicking a skill (from a bullet, from the Skills section, or from a
+  personal project) opens a panel listing **everywhere else** that skill
+  shows up — other roles and personal projects — with a direct link to each.
+  Clicking through scrolls to and expands that exact bullet.
 
-C'est cette relation `skills: [...]` dans `data.js` qui construit tout le
-réseau : plus tu es précis sur les compétences de chaque projet, plus la
-navigation est riche.
+That network is entirely built from the `skills: [...]` arrays in
+`data.js` — the more precise you are there, the richer the navigation.
 
-## Déploiement — GitHub Pages + domaine `aurelienbertheaume.me`
+## A note on privacy
 
-Ce dépôt contient déjà un fichier `CNAME` avec `aurelienbertheaume.me`,
-utilisé par GitHub Pages pour savoir sur quel domaine personnalisé publier.
+The References section intentionally avoids publishing anyone's personal
+email or phone number on a public page. List who's willing to vouch for you
+(name, role, relationship) and let recruiters ask for contact details
+directly — safer, and standard practice.
 
-1. Sur GitHub : **Settings → Pages**.
-   - Source : `Deploy from a branch`.
-   - Branch : la branche à publier (typiquement `main`), dossier `/ (root)`.
-   - Enregistre. GitHub Pages va détecter le fichier `CNAME` et configurer
-     le domaine personnalisé automatiquement.
-2. Chez ton registrar (là où tu as acheté `aurelienbertheaume.me`), configure
-   les DNS :
-   - Pour le domaine racine (`aurelienbertheaume.me`), ajoute 4 enregistrements
-     **A** pointant vers les IP de GitHub Pages :
+## Deployment — GitHub Pages + `aurelienbertheaume.me`
+
+This repo already has a `CNAME` file with `aurelienbertheaume.me`, which
+GitHub Pages uses to know which custom domain to serve.
+
+1. On GitHub: **Settings → Pages**.
+   - Source: `Deploy from a branch`.
+   - Branch: the branch to publish (typically `main`), folder `/ (root)`.
+   - Save. GitHub Pages will pick up the `CNAME` file and configure the
+     custom domain automatically.
+2. At your registrar (wherever you bought `aurelienbertheaume.me`), set the
+   DNS records:
+   - For the root domain (`aurelienbertheaume.me`), add 4 **A** records
+     pointing at GitHub Pages:
      ```
      185.199.108.153
      185.199.109.153
      185.199.110.153
      185.199.111.153
      ```
-   - Si tu préfères utiliser `www.aurelienbertheaume.me`, ajoute plutôt un
-     enregistrement **CNAME** pointant vers `<ton-compte>.github.io`.
-3. Dans **Settings → Pages**, coche **Enforce HTTPS** une fois le certificat
-   généré (peut prendre jusqu'à quelques heures après la config DNS).
+   - If you'd rather use `www.aurelienbertheaume.me`, add a **CNAME** record
+     pointing at `<your-account>.github.io` instead.
+3. In **Settings → Pages**, tick **Enforce HTTPS** once the certificate has
+   been issued (can take a few hours after the DNS change propagates).
 
-Le site sera alors accessible sur `https://aurelienbertheaume.me`.
+The site will then be live at `https://aurelienbertheaume.me`.
 
-## Structure du projet
+## Project structure
 
 ```
-index.html              structure de la page (une seule page, plusieurs sections)
-assets/css/style.css    design system (couleurs, typographie, composants)
-assets/js/data.js       TOUT LE CONTENU — c'est le fichier à éditer
-assets/js/app.js        logique de rendu et d'interactions (pas besoin d'y toucher)
-assets/img/photo/       ta photo de portrait
-assets/img/personal/    photos de tes projets personnels
-assets/video/           (optionnel) si tu préfères héberger une vidéo toi-même
-CNAME                   domaine personnalisé pour GitHub Pages
+index.html              page structure (one page, several sections)
+assets/css/style.css    design system (colours, type, components)
+assets/js/data.js       ALL THE CONTENT — the file to edit
+assets/js/app.js        rendering and interaction logic (shouldn't need edits)
+assets/img/photo/       your portrait photo
+assets/img/personal/    photos for your personal projects
+assets/video/           (optional) if you'd rather self-host a video file
+CNAME                   custom domain for GitHub Pages
 ```
 
-## Ce qu'il reste à faire avant d'envoyer le CV à des recruteurs
+## Before sending this to recruiters
 
-- [ ] Remplacer toutes les valeurs `[ENTRE CROCHETS]` dans `assets/js/data.js`
-- [ ] Ajouter ta photo (`profile.photo` / `photo.src`)
-- [ ] Ajouter le lien de ta vidéo de présentation (`video.url`)
-- [ ] Vérifier le lien LinkedIn (`profile.linkedinUrl`) et les liens des posts
-- [ ] Relire l'ensemble sur mobile (le site est responsive, mais une relecture
-      ne fait jamais de mal)
-- [ ] Configurer les DNS et vérifier que `https://aurelienbertheaume.me`
-      charge bien le site
+- [ ] Replace every `[LIKE THIS]` placeholder in `assets/js/data.js` (phone
+      number is the main one left)
+- [ ] Add your photo (`photo.src` in `data.js`)
+- [ ] Add your intro video link (`video.url`)
+- [ ] Confirm the additional references you want listed (name, role,
+      relationship) and add them under `references.testimonials`
+- [ ] Add real photos for the "Beyond the Job" project(s)
+- [ ] Proofread on mobile (the site is responsive, but it never hurts)
+- [ ] Set up DNS and confirm `https://aurelienbertheaume.me` loads the site

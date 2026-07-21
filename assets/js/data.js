@@ -1,293 +1,301 @@
 /**
  * ============================================================================
- *  CONTENU DU CV — c'est le SEUL fichier que tu dois modifier pour mettre
- *  tes vraies informations. La mise en page (HTML/CSS) n'a pas besoin de
- *  changer : elle se construit automatiquement à partir de ce fichier.
+ *  CV CONTENT — this is the ONLY file you should need to edit.
+ *  The layout (HTML/CSS) doesn't need to change: everything below renders
+ *  automatically.
  *
- *  Tout ce qui est écrit entre crochets [COMME CECI] est un espace réservé
- *  à remplacer. Cherche "[" dans ce fichier pour retrouver tout ce qu'il
- *  reste à compléter.
+ *  Anything written as [LIKE THIS] is still a placeholder to fill in.
  * ============================================================================
  */
 
 const SITE_DATA = {
 
   // --------------------------------------------------------------------
-  // 1. PROFIL — identité, accroche, bio
+  // 1. PROFILE
   // --------------------------------------------------------------------
   profile: {
     name: "Aurélien Bertheaume",
     initials: "AB",
 
-    // Ces intitulés défilent dans le hero (bandeau d'accueil).
+    // Cycles in the hero banner.
     roles: [
-      "Systems Architect",
+      "Technical Program Manager",
       "Systems Engineer",
-      "Program Manager",
-      "Product Development Manager"
+      "Product & Systems Engineering",
+      "Program Manager"
     ],
 
-    // Le "pivot" que tu veux mettre en avant : capacité à basculer sur un
-    // rôle Product Manager côté marketing.
-    pivotRole: "Product Manager (Marketing)",
+    pivotRole: "Product Manager",
 
-    location: "[Ville, Pays]",
+    location: "Sydney, Australia",
     email: "aurelien.bth@gmail.com",
-    phone: "[+33 6 00 00 00 00]",
-    linkedinUrl: "https://www.linkedin.com/in/[ton-identifiant]",
-    linkedinLabel: "linkedin.com/in/[ton-identifiant]",
+    phone: "[+61 4XX XXX XXX]",
+    linkedinUrl: "https://www.linkedin.com/in/aurelien-bertheaume/",
+    linkedinLabel: "linkedin.com/in/aurelien-bertheaume",
 
-    tagline: "Je conçois, j'architecture et je pilote les systèmes complexes — du concept à la mise sur le marché.",
+    tagline: "Technical Program Manager working at the intersection of systems engineering, product development and commercial decision-making.",
 
-    // 2-3 paragraphes courts. Le premier sert aussi de résumé en haut de page.
+    // Shown as a highlighted callout — the "I can also do this" pivot.
+    pivotHeadline: "Open to Product Manager roles",
+    pivotNote: "including product marketing — where technical depth and commercial thinking matter as much as roadmap ownership.",
+
     bio: [
-      "[À REMPLACER] Ingénieur systèmes et chef de programme avec X années d'expérience sur des projets complexes multi-domaines (matériel, logiciel, intégration). J'interviens de la définition d'architecture jusqu'au pilotage industriel, en assurant la cohérence technique et le respect des engagements coûts/délais.",
-      "[À REMPLACER] J'aime les sujets où l'ingénierie système, la gestion de programme et le développement produit se rencontrent : cadrer un besoin flou, concevoir une architecture robuste, puis piloter l'équipe et les fournisseurs jusqu'à la mise en service.",
-      "[À REMPLACER] Par ailleurs, mon expérience de la voix du client, du positionnement produit et du travail cross-fonctionnel me permet d'évoluer naturellement vers un rôle de Product Manager côté marketing — faire le lien entre besoin marché, feuille de route produit et exécution technique."
+      "Technical decisions have consequences that most people never see. A firmware bug that reaches the field. A cost model that doesn't hold under real deployment. An architecture that works in the lab and fails at scale. I've spent more than three years working at the intersection of those risks, in environments where getting it wrong is expensive and visible.",
+      "At Legrand Australia, I was Technical Program Manager on Galaxy, a connected emergency lighting platform for the AU/NZ market — a safety-critical environment with full-stack scope across hardware, firmware, wireless (LoRa/Wi-Fi/Bluetooth), cloud and mobile, coordinated across three international R&D centres.",
+      "The work covered the full product lifecycle: stabilising a live platform, shipping new features and security hardening across a distributed field deployment, running formal risk assessments at every NPI milestone, and contributing to technology feasibility studies and Go/No-Go decisions — including business cases presented to international finance stakeholders.",
+      "Before that, I designed embedded hardware and firmware from scratch. I know what engineers are actually solving for, which changes how I manage programmes and communicate trade-offs to stakeholders. That combination — technical enough to understand the problem, structured enough to drive the programme, commercial enough to frame the decision — is also what draws me toward Product Management: I'm actively open to roles where I own the \"why\" and the \"so what\", not just the \"how\"."
     ],
 
-    // Compétences "signature" affichées juste sous l'accroche (5-6 mots-clés max)
     highlights: [
-      "Architecture systèmes",
-      "Pilotage de programme",
-      "Développement produit",
-      "Intégration multi-domaines",
-      "Product & marché"
+      "Technical Program Management",
+      "Systems & Embedded Engineering",
+      "NPI & Risk Management",
+      "Cross-Functional Leadership",
+      "Commercial & Product Thinking"
+    ],
+
+    passions: [
+      { icon: "running", label: "Running" },
+      { icon: "gym", label: "Gym" },
+      { icon: "cycling", label: "Cycling" },
+      { icon: "growth", label: "Personal Development" },
+      { icon: "tech", label: "Tech" }
     ]
   },
 
   // --------------------------------------------------------------------
-  // 2. PHOTO — laisse photo: null pour garder l'avatar par défaut, ou mets
-  //    le chemin vers ton fichier (place-le dans assets/img/photo/).
+  // 2. PHOTO — set src once you have a file in assets/img/photo/
   // --------------------------------------------------------------------
   photo: {
-    src: null, // ex: "assets/img/photo/aurelien.jpg"
-    alt: "Portrait d'Aurélien Bertheaume"
+    src: null, // e.g. "assets/img/photo/aurelien.jpg"
+    alt: "Portrait of Aurélien Bertheaume"
   },
 
   // --------------------------------------------------------------------
-  // 3. VIDÉO DE PRÉSENTATION — laisse url: "" tant que tu n'as pas de vidéo.
-  //    Accepte un lien YouTube ou Vimeo (l'intégration se fait automatiquement).
+  // 3. INTRO VIDEO — leave url: "" until you have one. Accepts a YouTube
+  //    or Vimeo link.
   // --------------------------------------------------------------------
   video: {
-    url: "", // ex: "https://www.youtube.com/watch?v=XXXXXXXXXXX"
-    caption: "Vidéo de présentation (60-90 secondes) : qui je suis, ce que je sais faire, ce que je cherche."
+    url: "", // e.g. "https://www.youtube.com/watch?v=XXXXXXXXXXX"
+    caption: "60–90 second intro: who I am, what I'm good at, what I'm looking for next."
   },
 
   // --------------------------------------------------------------------
-  // 4. COMPÉTENCES — organisées par catégorie. Chaque compétence a un id
-  //    unique (utilisé pour relier projets <-> compétences).
+  // 4. IMPACT / KPIs — a handful of headline numbers.
+  // --------------------------------------------------------------------
+  kpis: [
+    { value: "$1.7M", label: "Projected warranty cost avoidance over 10 years (parts only, labour excluded)" },
+    { value: "65,000", label: "Units/year production line impacted by managed firmware releases" },
+    { value: "3", label: "International R&D centres coordinated on a single programme" },
+    { value: "4", label: "Functional domains aligned per programme — R&D, marketing, operations, sales" }
+  ],
+
+  // --------------------------------------------------------------------
+  // 5. SKILLS — organised by category. Each skill has a unique id used to
+  //    link experience bullets <-> skills <-> other bullets.
   // --------------------------------------------------------------------
   skillCategories: [
-    { id: "architecture", label: "Architecture & Ingénierie Systèmes" },
-    { id: "program",      label: "Pilotage de Programme" },
-    { id: "product",      label: "Développement Produit" },
-    { id: "marketing",    label: "Produit & Marché" }
+    { id: "leadership", label: "Program & Leadership" },
+    { id: "systems",    label: "Systems & Product Engineering" },
+    { id: "hardware",   label: "Hardware & Embedded" },
+    { id: "tools",      label: "Tools & Analysis" }
   ],
 
   skills: [
-    { id: "sys-architecture",   name: "Architecture systèmes",        categoryId: "architecture", blurb: "Conception d'architectures multi-domaines cohérentes avec les exigences." },
-    { id: "requirements-eng",   name: "Ingénierie des exigences",     categoryId: "architecture", blurb: "Traduction du besoin client en exigences vérifiables." },
-    { id: "systems-integration",name: "Intégration & vérification",   categoryId: "architecture", blurb: "Intégration de sous-systèmes hétérogènes et validation bout-en-bout." },
-    { id: "technical-risk",     name: "Gestion des risques techniques", categoryId: "architecture", blurb: "Identification et mitigation des risques de conception." },
+    { id: "program-management", name: "Technical Program Management", categoryId: "leadership", blurb: "End-to-end delivery ownership across cost, schedule and technical performance." },
+    { id: "cross-functional",   name: "Cross-Functional Team Leadership", categoryId: "leadership", blurb: "Aligning R&D, marketing, operations and sales toward one roadmap." },
+    { id: "stakeholder-mgmt",   name: "Stakeholder Management", categoryId: "leadership", blurb: "Working directly with international finance and executive stakeholders." },
+    { id: "risk-management",    name: "Technical & Programme Risk Management", categoryId: "leadership", blurb: "Formal, multi-dimensional risk assessment at every programme milestone." },
+    { id: "business-case",      name: "Business Case Development", categoryId: "leadership", blurb: "Investment recommendations, CAPEX/OPEX evaluation, Go/No-Go decisions." },
 
-    { id: "program-management", name: "Gestion de programme",        categoryId: "program", blurb: "Pilotage global coûts / délais / performance sur des programmes multi-lots." },
-    { id: "stakeholder-mgmt",   name: "Gestion des parties prenantes", categoryId: "program", blurb: "Coordination client, fournisseurs, direction et équipes techniques." },
-    { id: "roadmapping",        name: "Roadmapping",                 categoryId: "program", blurb: "Construction et arbitrage de feuilles de route pluriannuelles." },
-    { id: "governance",         name: "Gouvernance projet",          categoryId: "program", blurb: "Mise en place de rituels de pilotage et de reporting exécutif." },
+    { id: "systems-architecture", name: "Systems Architecture & Feasibility", categoryId: "systems", blurb: "Use-case analysis and architecture design for complex connected systems." },
+    { id: "npi",                  name: "New Product Introduction (NPI)", categoryId: "systems", blurb: "Structured milestone process from concept to industrialisation." },
+    { id: "product-lifecycle",    name: "Product Lifecycle Management", categoryId: "systems", blurb: "Managing a live product from stabilisation through feature growth." },
+    { id: "iot-connected",        name: "IoT & Connected Products", categoryId: "systems", blurb: "Full-stack connected product delivery: device, cloud, mobile." },
+    { id: "process-digitalisation", name: "Process Digitalisation", categoryId: "systems", blurb: "Digitalising and automating manual estimation/commercial workflows." },
 
-    { id: "product-development",name: "Développement produit",       categoryId: "product", blurb: "Pilotage du cycle de vie produit, du concept à l'industrialisation." },
-    { id: "cross-functional",   name: "Leadership cross-fonctionnel", categoryId: "product", blurb: "Animation d'équipes pluridisciplinaires (ingénierie, achats, qualité)." },
-    { id: "vendor-management",  name: "Pilotage fournisseurs",       categoryId: "product", blurb: "Sélection, contractualisation et suivi de performance fournisseurs." },
-    { id: "agile-delivery",     name: "Agilité & delivery",          categoryId: "product", blurb: "Mise en œuvre de rituels agiles adaptés à des contextes industriels." },
+    { id: "hardware-engineering", name: "Hardware Engineering (PCB / Schematics)", categoryId: "hardware", blurb: "Schematic capture, PCB layout and board bring-up." },
+    { id: "embedded-firmware",    name: "Embedded Firmware (STM32 / RTOS)", categoryId: "hardware", blurb: "Real-time, multi-threaded firmware on STM32 with ThreadX RTOS / NetX Duo." },
+    { id: "wireless-connectivity", name: "Wireless Connectivity (LoRa / Wi-Fi / BLE)", categoryId: "hardware", blurb: "Connectivity design for field-deployed IoT hardware." },
+    { id: "test-automation",      name: "Automated Test & Validation", categoryId: "hardware", blurb: "Standards-compliant automated test platforms and release validation." },
 
-    { id: "product-strategy",   name: "Stratégie produit",           categoryId: "marketing", blurb: "Définition de positionnement et de proposition de valeur." },
-    { id: "market-research",    name: "Étude de marché",             categoryId: "marketing", blurb: "Analyse concurrentielle et écoute du besoin client final." },
-    { id: "go-to-market",       name: "Go-to-market",                categoryId: "marketing", blurb: "Construction de plans de lancement produit." },
-    { id: "user-research",      name: "Recherche utilisateur",       categoryId: "marketing", blurb: "Entretiens et synthèse des besoins utilisateurs pour prioriser la roadmap." }
+    { id: "python",              name: "Python", categoryId: "tools", blurb: "Automated test tooling and validation scripting." },
+    { id: "matlab",               name: "MATLAB & Signal Processing", categoryId: "tools", blurb: "Time/frequency-domain analysis and embedded DSP algorithms." },
+    { id: "commercial-analysis",  name: "Commercial & Technical Estimation", categoryId: "tools", blurb: "Turning drawings and specs into scoped, risk-informed commercial deliverables." },
+    { id: "cloud-mobile",         name: "Cloud & Mobile Integration", categoryId: "tools", blurb: "Linux/Docker cloud services paired with companion mobile apps." }
   ],
 
   // --------------------------------------------------------------------
-  // 5. PROJETS PROFESSIONNELS — le cœur du CV.
-  //    "category" doit être l'un des id de projectCategories ci-dessous.
-  //    "skills" est une liste d'id venant de la liste "skills" au-dessus :
-  //    c'est ce qui permet de cliquer une compétence et de voir tous les
-  //    projets liés.
+  // 6. EXPERIENCE — the core of the CV, most recent first.
+  //    Each bullet has its own "skills" (ids from the list above) — click
+  //    a bullet to reveal what it took to deliver it, click a skill to see
+  //    everywhere else it shows up.
   // --------------------------------------------------------------------
-  projectCategories: [
-    { id: "architecture", label: "Architecture systèmes" },
-    { id: "program",      label: "Pilotage de programme" },
-    { id: "product",      label: "Développement produit" },
-    { id: "marketing",    label: "Produit & marché" }
-  ],
-
-  projects: [
+  experience: [
     {
-      id: "projet-1",
-      title: "[Nom du projet / programme]",
-      org: "[Entreprise ou client]",
-      period: "[2022 — 2024]",
-      category: "architecture",
-      summary: "[À REMPLACER] Résumé en une phrase de ce que tu as livré et pourquoi ça comptait.",
-      description: [
-        "[À REMPLACER] Contexte : quel était le problème, l'enjeu, la contrainte de départ.",
-        "[À REMPLACER] Ton rôle précis et les décisions clés que tu as prises.",
-        "[À REMPLACER] Comment le projet s'est terminé."
-      ],
-      impact: [
-        "[À REMPLACER] Résultat chiffré ou concret n°1",
-        "[À REMPLACER] Résultat chiffré ou concret n°2",
-        "[À REMPLACER] Résultat chiffré ou concret n°3"
-      ],
-      skills: ["sys-architecture", "requirements-eng", "technical-risk"]
+      id: "exp-legrand-dcs",
+      title: "Technical Estimator | Process Digitalisation",
+      org: "Legrand Data Center Solutions",
+      period: "Jan 2026 — Present",
+      location: "Sydney, Australia",
+      context: "Data centre infrastructure estimation and process digitalisation for the APAC region.",
+      bullets: [
+        { text: "Driving an initiative to digitalise and automate estimation-to-quote workflows, targeting integration with Legrand's group Salesforce ecosystem.", skills: ["process-digitalisation", "commercial-analysis"] },
+        { text: "Applying systems thinking to translate complex technical scope into structured, risk-informed commercial deliverables for large-scale data centre infrastructure projects.", skills: ["systems-architecture", "risk-management", "commercial-analysis"] },
+        { text: "Analysing project drawings, BOQs and specifications to define scope, interfaces, technical risks and commercial assumptions across APAC markets.", skills: ["commercial-analysis", "risk-management", "stakeholder-mgmt"] }
+      ]
     },
     {
-      id: "projet-2",
-      title: "[Nom du projet / programme]",
-      org: "[Entreprise ou client]",
-      period: "[2020 — 2022]",
-      category: "program",
-      summary: "[À REMPLACER] Résumé en une phrase.",
-      description: [
-        "[À REMPLACER] Contexte.",
-        "[À REMPLACER] Ton rôle et décisions clés.",
-        "[À REMPLACER] Conclusion / passage de relais."
-      ],
-      impact: [
-        "[À REMPLACER] Résultat n°1",
-        "[À REMPLACER] Résultat n°2"
-      ],
-      skills: ["program-management", "stakeholder-mgmt", "governance"]
+      id: "exp-legrand-tpm",
+      title: "Technical Program Manager | Product & Systems Engineering",
+      org: "Legrand Australia",
+      period: "Jan 2024 — Dec 2025",
+      location: "Sydney, Australia",
+      context: "Galaxy, Legrand's connected emergency lighting platform for the AU/NZ market. Safety-critical environment, full-stack scope across hardware, firmware, wireless (LoRa/Wi-Fi/Bluetooth), Linux/Docker, cloud and mobile — coordinated across 3 international R&D centres and 4 functional domains (R&D, marketing, operations, sales).",
+      bullets: [
+        { text: "Managed programme delivery and feature release lifecycle: stabilisation, new features and security hardening on a live, distributed field deployment.", skills: ["program-management", "iot-connected", "product-lifecycle"] },
+        { text: "Contributed to technology feasibility assessments, Go/No-Go decisions and business case development, including investment recommendations presented to international finance stakeholders.", skills: ["business-case", "stakeholder-mgmt", "systems-architecture"] },
+        { text: "Ran formal multi-dimensional risk assessments at each NPI milestone, covering technology maturity, supplier dependencies, multi-sourcing and international stakeholder risk. Managed CAPEX/OPEX evaluation across the programme lifecycle.", skills: ["risk-management", "npi", "business-case"] },
+        { text: "Managed firmware release impact on a 65,000-unit/year production line: revised PCB assembly BOMs and updated device programming values to ensure SW/HW coherence at scale.", skills: ["hardware-engineering", "embedded-firmware", "product-lifecycle"] },
+        { text: "Implemented an AS/NZS2293-compliant automated test platform and structured release validation processes, supporting ~$1.7M in projected warranty cost avoidance over 10 years (parts only, labour excluded).", skills: ["test-automation", "risk-management", "iot-connected"] }
+      ]
     },
     {
-      id: "projet-3",
-      title: "[Nom du projet / programme]",
-      org: "[Entreprise ou client]",
-      period: "[2019 — 2020]",
-      category: "product",
-      summary: "[À REMPLACER] Résumé en une phrase.",
-      description: [
-        "[À REMPLACER] Contexte.",
-        "[À REMPLACER] Ton rôle et décisions clés."
-      ],
-      impact: [
-        "[À REMPLACER] Résultat n°1",
-        "[À REMPLACER] Résultat n°2"
-      ],
-      skills: ["product-development", "cross-functional", "vendor-management"]
+      id: "exp-legrand-embedded",
+      title: "Embedded Systems Engineer | SPE/PoDL Gateway Integration & Evaluation",
+      org: "Legrand",
+      period: "Sep 2022 — Dec 2023",
+      location: "Limoges, France",
+      context: "Designed a distributed connected-device architecture and built a full proof of concept of the gateway node using Single Pair Ethernet / Power over Data Line (SPE/PoDL) technology.",
+      bullets: [
+        { text: "Performed use-case analysis and system architecture design to assess feasibility, interfaces and deployment relevance.", skills: ["systems-architecture", "iot-connected"] },
+        { text: "Delivered hardware design including schematics, PCB layout and bus-powered supply architecture.", skills: ["hardware-engineering"] },
+        { text: "Developed embedded firmware on STM32 using ThreadX RTOS and NetX Duo, enabling deterministic task scheduling, communication stack integration and system control.", skills: ["embedded-firmware"] },
+        { text: "Architected multi-threaded firmware with real-time constraints, ensuring reliable handling of networking, I/O and control processes.", skills: ["embedded-firmware", "systems-architecture"] },
+        { text: "Led performance and robustness evaluation through testing of throughput, latency and system reliability.", skills: ["test-automation"] },
+        { text: "Defined and monitored KPIs to assess technical maturity and industrial relevance of the solution.", skills: ["npi", "risk-management"] }
+      ]
     },
     {
-      id: "projet-4",
-      title: "[Nom du projet / programme]",
-      org: "[Entreprise ou client]",
-      period: "[2018 — 2019]",
-      category: "architecture",
-      summary: "[À REMPLACER] Résumé en une phrase.",
-      description: [
-        "[À REMPLACER] Contexte.",
-        "[À REMPLACER] Ton rôle et décisions clés."
-      ],
-      impact: [
-        "[À REMPLACER] Résultat n°1"
-      ],
-      skills: ["systems-integration", "sys-architecture"]
+      id: "exp-legrand-intern",
+      title: "Hardware & Firmware Development Engineer | Automated Test Interface",
+      org: "Legrand — Internship",
+      period: "May 2022 — Sep 2022",
+      location: "Limoges, France",
+      context: "Designed a representative electronic test interface for MEMS microphone validation.",
+      bullets: [
+        { text: "Studied MEMS microphone behaviour to support the design of a representative electronic test interface.", skills: ["hardware-engineering"] },
+        { text: "Designed and prototyped a custom board, including schematic capture, PCB layout and assembly.", skills: ["hardware-engineering"] },
+        { text: "Developed embedded software for advanced board control through UART communication.", skills: ["embedded-firmware"] },
+        { text: "Integrated the solution into an automated Python-based test interface for validation activities.", skills: ["python", "test-automation"] }
+      ]
     },
     {
-      id: "projet-5",
-      title: "[Nom du projet / programme]",
-      org: "[Entreprise ou client]",
-      period: "[2017 — 2018]",
-      category: "marketing",
-      summary: "[À REMPLACER] Un exemple où tu as travaillé côté besoin marché / produit.",
-      description: [
-        "[À REMPLACER] Contexte.",
-        "[À REMPLACER] Ton rôle et décisions clés."
-      ],
-      impact: [
-        "[À REMPLACER] Résultat n°1"
-      ],
-      skills: ["product-strategy", "market-research", "user-research"]
+      id: "exp-ensil-ecg",
+      title: "Academic Project — Classification of Physiological Signals (ECG)",
+      org: "ENSIL-ENSCI",
+      period: "Sep 2021 — Apr 2022",
+      location: "Limoges, France",
+      context: "Designed real-time algorithms to assess and classify ECG signal quality, in collaboration with a PhD researcher specialising in physiological signals.",
+      bullets: [
+        { text: "Extracted and calculated Signal Quality Indicators (SQIs) using advanced time- and frequency-domain analysis.", skills: ["matlab"] },
+        { text: "Developed decision rules based on fuzzy logic and indicator correlation to detect arrhythmias and signal anomalies.", skills: ["matlab"] },
+        { text: "Implemented algorithms on an embedded DSP to ensure continuous, reliable, real-time patient monitoring.", skills: ["embedded-firmware", "matlab"] }
+      ]
     },
     {
-      id: "projet-6",
-      title: "[Nom du projet / programme]",
-      org: "[Entreprise ou client]",
-      period: "[2016 — 2017]",
-      category: "program",
-      summary: "[À REMPLACER] Résumé en une phrase.",
-      description: [
-        "[À REMPLACER] Contexte.",
-        "[À REMPLACER] Ton rôle et décisions clés."
-      ],
-      impact: [
-        "[À REMPLACER] Résultat n°1"
-      ],
-      skills: ["roadmapping", "agile-delivery", "go-to-market"]
+      id: "exp-barilla",
+      title: "Internship — Technical Service",
+      org: "Barilla Group",
+      period: "Jul 2021 — Aug 2021",
+      location: "Montierchaume, France",
+      context: "Short technical operations internship supporting maintenance and inventory on an industrial production site.",
+      bullets: [
+        { text: "Managed spare parts inventory.", skills: ["commercial-analysis"] },
+        { text: "Carried out maintenance operations on production machines.", skills: ["hardware-engineering"] }
+      ]
     }
   ],
 
   // --------------------------------------------------------------------
-  // 6. PROJETS PERSONNELS — présentés façon "articles" avec photo.
-  //    "content" est une liste de paragraphes.
-  //    "image" : chemin vers assets/img/personal/ (laisse null pour un
-  //    visuel par défaut).
+  // 7. EDUCATION
+  // --------------------------------------------------------------------
+  education: [
+    { school: "ENSIL-ENSCI", degree: "Engineering Degree, Electronics & Telecommunications", period: "2020 — 2023" },
+    { school: "IAE Limoges", degree: "Master 2, Management of Administrations and Enterprises", period: "Oct 2021 — Jul 2023" }
+  ],
+
+  // --------------------------------------------------------------------
+  // 8. BEYOND THE JOB — real personal / community projects, article style.
   // --------------------------------------------------------------------
   personalProjects: [
     {
-      id: "perso-1",
-      title: "[Titre de ton projet perso]",
-      date: "[2024]",
-      image: null, // ex: "assets/img/personal/projet1.jpg"
-      excerpt: "[À REMPLACER] Une phrase d'accroche façon chapô d'article.",
+      id: "unicef-walk",
+      title: "37km Overnight Walk — North Sydney to Bondi Beach, for UNICEF",
+      date: "2025",
+      image: null, // add photos from the LinkedIn post to assets/img/personal/
+      excerpt: "An overnight solidarity walk with Legrand colleagues, raising support for UNICEF.",
       content: [
-        "[À REMPLACER] Pourquoi tu as lancé ce projet, ce que tu voulais apprendre ou prouver.",
-        "[À REMPLACER] Comment tu t'y es pris, les choix techniques ou créatifs marquants.",
-        "[À REMPLACER] Ce que ça t'a apporté et ce que ça dit de ta façon de travailler."
+        "We left at 8PM and arrived at 5AM, just in time to watch the sunrise over the ocean — 37 kilometres on foot, from North Sydney to Bondi Beach via Vaucluse.",
+        "The walk was part of Ellegrand, a Legrand initiative promoting equality, diversity and inclusion, done in solidarity to support UNICEF. A collective effort, a bit crazy, deeply human.",
+        "It was a small way of putting the same things I bring to my day job — commitment, teamwork, pushing through when it gets hard — into something outside of work."
       ],
-      skills: ["sys-architecture", "product-development"]
-    },
-    {
-      id: "perso-2",
-      title: "[Titre de ton projet perso]",
-      date: "[2023]",
-      image: null,
-      excerpt: "[À REMPLACER] Une phrase d'accroche.",
-      content: [
-        "[À REMPLACER] Contexte du projet.",
-        "[À REMPLACER] Réalisation et résultat."
-      ],
-      skills: ["product-strategy", "user-research"]
+      skills: [],
+      url: "https://www.linkedin.com/feed/update/urn:li:activity:7314836828144951298/"
     }
   ],
 
   // --------------------------------------------------------------------
-  // 7. POSTS LINKEDIN — cartes qui renvoient vers tes vrais posts.
-  //    "image" optionnelle (assets/img/personal/ ou autre dossier).
+  // 9. FEATURED ON LINKEDIN
   // --------------------------------------------------------------------
   linkedinPosts: [
     {
-      id: "post-1",
-      title: "[Titre / accroche du post]",
-      date: "[Janvier 2026]",
-      excerpt: "[À REMPLACER] Les 2-3 premières lignes du post, pour donner envie de cliquer.",
-      url: "https://www.linkedin.com/[lien-vers-le-post]",
+      id: "post-vie-2yr",
+      title: "Two Years in Australia: What My V.I.E Taught Me",
+      date: "English · 269 reactions · 16 comments",
+      excerpt: "Two years ago, I arrived in Australia for my V.I.E with many ideas. Today, as this chapter comes to an end, I can clearly see how much it shaped my approach to engineering...",
+      url: "https://www.linkedin.com/feed/update/urn:li:activity:7427252707255652352/",
       image: null
     },
     {
-      id: "post-2",
-      title: "[Titre / accroche du post]",
-      date: "[Décembre 2025]",
-      excerpt: "[À REMPLACER] Les 2-3 premières lignes du post.",
-      url: "https://www.linkedin.com/[lien-vers-le-post]",
+      id: "post-vie-1yr",
+      title: "A Year Abroad: Reshaping the Way I Work",
+      date: "English · 55 reactions · 6 comments",
+      excerpt: "I didn't expect this experience to reshape the way I work so profoundly. A year ago, I moved to Australia as part of the V.I.E program — it's been a fast-track journey, both professionally and personally...",
+      url: "https://www.linkedin.com/feed/update/urn:li:activity:7340607902618927104/",
       image: null
     },
     {
-      id: "post-3",
-      title: "[Titre / accroche du post]",
-      date: "[Novembre 2025]",
-      excerpt: "[À REMPLACER] Les 2-3 premières lignes du post.",
-      url: "https://www.linkedin.com/[lien-vers-le-post]",
+      id: "post-wootch",
+      title: "Wootch: Designing a Locator Watch for Kids",
+      date: "French · 31 reactions · 3 comments",
+      excerpt: "As part of a professional-insertion project, we designed and pitched Wootch, a locatable watch for kids — concept, product thinking and a 3-minute pitch to defend it...",
+      url: "https://www.linkedin.com/feed/update/urn:li:activity:6878655761619279872/",
       image: null
     }
-  ]
+  ],
+
+  // --------------------------------------------------------------------
+  // 10. REFERENCES
+  // --------------------------------------------------------------------
+  references: {
+    testimonials: [
+      {
+        name: "Vahid Meghdadi",
+        role: "Professor, University of Limoges",
+        relationship: "Was Aurélien's teacher at ENSIL-ENSCI",
+        date: "July 2023",
+        quote: "I had Aurélien as a student in several courses at ENSIL-ENSCI. He is curious, thoughtful, and always sees the deeper purpose behind what he's taught. As a teacher, I really valued his presence in class, his relevant contributions, and his open-mindedness. I have no doubt he will succeed — and help lift up those around him.",
+        quoteNote: "Translated from French — original recommendation on LinkedIn.",
+        linkedinUrl: "https://www.linkedin.com/in/vahid-meghdadi-b890168/"
+      }
+      // Add former managers/colleagues here once you confirm with them:
+      // { name: "[Name]", role: "[Role, Company]", relationship: "[e.g. Direct manager at Legrand Australia, 2024-2025]",
+      //   date: "[Month Year]", quote: "[Their words]", linkedinUrl: "[optional]" }
+    ],
+    // Rather than publishing personal emails/phone numbers on a public page,
+    // list who's willing to vouch for you and let recruiters ask for contact
+    // details directly — safer, and standard practice.
+    note: "Several former managers and colleagues have agreed to be references. Names, roles and contact details available on request."
+  }
 };
