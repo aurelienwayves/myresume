@@ -437,7 +437,7 @@ p{ margin: 0 0 1em; color: var(--ink-soft); }
 /* ==========================================================================
    KPIs / IMPACT
    ========================================================================== */
-.kpi-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+.kpi-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
 .kpi-card{
   background: var(--surface);
   border: 1px solid var(--line);
@@ -466,7 +466,7 @@ p{ margin: 0 0 1em; color: var(--ink-soft); }
   padding: 1.7rem 1.8rem;
   transition: box-shadow .3s var(--ease);
 }
-.exp-entry.is-flash{ animation: flashHighlight 1.4s var(--ease); }
+.exp-entry.is-flash, .education-block.is-flash{ animation: flashHighlight 1.4s var(--ease); border-radius: var(--radius-md); }
 @keyframes flashHighlight{
   0%{ box-shadow: 0 0 0 3px var(--focus); }
   70%{ box-shadow: 0 0 0 3px var(--focus); }
@@ -478,6 +478,7 @@ p{ margin: 0 0 1em; color: var(--ink-soft); }
 .exp-org{ font-size: .9rem; color: var(--accent-strong); font-weight: 600; margin: 0; }
 .exp-meta{ font-family: var(--font-mono); font-size: .76rem; color: var(--ink-faint); white-space: nowrap; }
 .exp-context{ font-size: .92rem; color: var(--ink-soft); margin: .6rem 0 1.1rem; }
+.exp-context a{ color: var(--accent-strong); text-decoration: underline; text-underline-offset: 2px; }
 
 .exp-bullets{ display: flex; flex-direction: column; }
 .exp-bullet{ border-top: 1px solid var(--line); }
@@ -505,18 +506,19 @@ p{ margin: 0 0 1em; color: var(--ink-soft); }
   transition: max-height .32s var(--ease), opacity .25s var(--ease), margin .32s var(--ease);
   margin-left: 1.25em;
 }
-.exp-bullet.is-open .exp-bullet-detail{ max-height: 220px; opacity: 1; margin-bottom: 1rem; }
+.exp-bullet.is-open .exp-bullet-detail{ max-height: 320px; opacity: 1; margin-bottom: 1rem; }
 .exp-bullet-detail .skill-group-label{ margin-bottom: .5rem; }
 
-.education-block{ margin-top: 2.2rem; }
+.education-block{ margin-top: 2.2rem; transition: box-shadow .3s var(--ease); }
 .education-item{
-  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap;
-  padding: .9rem 0; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;
+  padding: 1rem 0; border-top: 1px solid var(--line);
 }
 .education-item:first-child{ border-top: none; }
 .edu-school{ font-weight: 700; font-size: .96rem; }
 .edu-degree{ font-size: .87rem; color: var(--ink-soft); margin-top: .1rem; }
-.edu-period{ font-family: var(--font-mono); font-size: .78rem; color: var(--ink-faint); white-space: nowrap; }
+.edu-focus{ margin-top: .7rem; }
+.edu-period{ font-family: var(--font-mono); font-size: .78rem; color: var(--ink-faint); white-space: nowrap; margin-top: .15rem; }
 
 /* ==========================================================================
    REFERENCES

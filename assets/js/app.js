@@ -20,7 +20,9 @@
     gym: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h2M19 12h2M6 9v6M18 9v6M8 12h8"/></svg>',
     cycling: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5 10 8h4l3 4.5M10 8l3 4.5h-6"/></svg>',
     growth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 4l-8 8-4-4-6 6"/></svg>',
-    tech: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>'
+    tech: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>',
+    art: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>',
+    tennis: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M4.5 6.5C8 9 8 15 4.5 17.5M19.5 6.5C16 9 16 15 19.5 17.5"/></svg>'
   };
 
   const byId = (id) => document.getElementById(id);
@@ -226,6 +228,14 @@
     setTimeout(() => entry.classList.remove("is-flash"), 1400);
   }
 
+  function jumpToEducation() {
+    const block = document.querySelector(".education-block");
+    if (!block) return;
+    block.scrollIntoView({ behavior: "smooth", block: "center" });
+    block.classList.add("is-flash");
+    setTimeout(() => block.classList.remove("is-flash"), 1400);
+  }
+
   // ======================================================================
   // EDUCATION
   // ======================================================================
@@ -235,6 +245,7 @@
         <div>
           <div class="edu-school">${e.school}</div>
           <div class="edu-degree">${e.degree}</div>
+          ${e.focus && e.focus.length ? `<div class="edu-focus skill-chips">${e.focus.map((id) => skillChipHTML(id, true)).join("")}</div>` : ""}
         </div>
         <span class="edu-period">${e.period}</span>
       </div>
@@ -360,6 +371,11 @@
         items.push({ kind: "personal", id: p.id, label: "Beyond the job", title: p.title });
       }
     });
+    D.education.forEach((e) => {
+      if (e.focus && e.focus.includes(skillId)) {
+        items.push({ kind: "education", id: null, label: "Coursework", title: `${e.degree}`, snippet: e.school });
+      }
+    });
     return items;
   }
 
@@ -413,6 +429,9 @@
         } else if (kind === "experience") {
           modal.close();
           jumpToExperienceBullet(btn.dataset.openId, Number(btn.dataset.bulletIndex));
+        } else if (kind === "education") {
+          modal.close();
+          jumpToEducation();
         }
       })
     );
