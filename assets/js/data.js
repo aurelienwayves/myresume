@@ -28,7 +28,7 @@ const SITE_DATA = {
     pivotRole: "Product Manager",
 
     location: "Sydney, Australia",
-    email: "aurelien.bth@gmail.com",
+    email: "aurelien.bertheaume@gmail.com",
     phone: "[+61 4XX XXX XXX]",
     linkedinUrl: "https://www.linkedin.com/in/aurelien-bertheaume/",
     linkedinLabel: "linkedin.com/in/aurelien-bertheaume",
@@ -299,7 +299,7 @@ const SITE_DATA = {
       id: "unicef-walk",
       title: "37km Overnight Walk — North Sydney to Bondi Beach, for UNICEF",
       date: "2025",
-      image: null, // add photos from the LinkedIn post to assets/img/personal/
+      image: "assets/img/photo/walk.jpg",
       excerpt: "An overnight solidarity walk with Legrand colleagues, raising support for UNICEF.",
       content: [
         "We left at 8PM and arrived at 5AM, just in time to watch the sunrise over the ocean — 37 kilometres on foot, from North Sydney to Bondi Beach via Vaucluse.",
