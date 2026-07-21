@@ -21,7 +21,9 @@
     growth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 4l-8 8-4-4-6 6"/></svg>',
     tech: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>',
     art: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>',
-    tennis: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M4.5 6.5C8 9 8 15 4.5 17.5M19.5 6.5C16 9 16 15 19.5 17.5"/></svg>'
+    tennis: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M4.5 6.5C8 9 8 15 4.5 17.5M19.5 6.5C16 9 16 15 19.5 17.5"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
+    phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>'
   };
 
   const byId = (id) => document.getElementById(id);
@@ -103,10 +105,25 @@
       frame.appendChild(img);
     }
 
+    const hasPhone = p.phone && !p.phone.startsWith("[");
     byId("contact-links").innerHTML = `
-      <a class="btn btn-primary" href="mailto:${p.email}">${ICONS.arrow} Send an email</a>
-      <a class="btn btn-ghost" href="${p.linkedinUrl}" target="_blank" rel="noopener">${p.linkedinLabel}</a>
-      <a class="btn btn-ghost" href="tel:${(p.phone || "").replace(/\s+/g, "")}">${p.phone}</a>
+      <a class="contact-card" href="mailto:${p.email}">
+        <span class="cc-icon">${ICONS.mail}</span>
+        <span class="cc-text"><span class="cc-label">Email</span><span class="cc-value">${p.email}</span></span>
+      </a>
+      <a class="contact-card" href="${p.linkedinUrl}" target="_blank" rel="noopener">
+        <span class="cc-icon cc-icon-linkedin">in</span>
+        <span class="cc-text"><span class="cc-label">LinkedIn</span><span class="cc-value">${p.linkedinLabel}</span></span>
+      </a>
+      ${hasPhone ? `
+      <a class="contact-card" href="tel:${p.phone.replace(/\s+/g, "")}">
+        <span class="cc-icon">${ICONS.phone}</span>
+        <span class="cc-text"><span class="cc-label">Phone</span><span class="cc-value">${p.phone}</span></span>
+      </a>` : `
+      <div class="contact-card is-static">
+        <span class="cc-icon">${ICONS.phone}</span>
+        <span class="cc-text"><span class="cc-label">Phone</span><span class="cc-value">Available on request</span></span>
+      </div>`}
     `;
   }
 
