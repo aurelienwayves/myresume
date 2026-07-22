@@ -16,7 +16,11 @@
     external: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>',
     mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
     phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>',
-    chevron: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>'
+    chevron: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
+    tech: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>',
+    art: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>',
+    tennis: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M4.5 6.5C8 9 8 15 4.5 17.5M19.5 6.5C16 9 16 15 19.5 17.5"/></svg>',
+    cycling: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5 10 8h4l3 4.5M10 8l3 4.5h-6"/></svg>'
   };
 
   const byId = (id) => document.getElementById(id);
@@ -50,13 +54,17 @@
   // --------------------------------------------------------------------
   function renderMasthead() {
     const p = D.profile;
-    document.title = `${p.name} | ${p.roles[0]} (compact)`;
+    document.title = `${p.name} | ${p.roles[0]}`;
     byId("m-name").textContent = p.name;
-    byId("m-role").textContent = p.roles[0];
+    byId("m-role-text").textContent = p.roles[0];
     byId("m-location").textContent = p.location;
     byId("m-tagline").textContent = p.tagline;
     byId("masthead-initials").textContent = p.initials;
     byId("c-year").textContent = new Date().getFullYear();
+
+    byId("m-passions").innerHTML = p.passions.map((pas) => `
+      <span class="passion-chip">${ICONS[pas.icon] || ""}${pas.label}</span>
+    `).join("");
 
     if (D.photo && D.photo.src) {
       const frame = byId("masthead-photo");
@@ -82,6 +90,21 @@
     `;
 
     byId("m-direction").innerHTML = `<strong>${p.pivotHeadline}</strong>: ${p.pivotNote}`;
+  }
+
+  function initRoleCycler() {
+    const roles = D.profile.roles.concat([D.profile.pivotRole]);
+    const el = byId("m-role-text");
+    let i = 0;
+    el.style.transition = "opacity .22s ease";
+    setInterval(() => {
+      i = (i + 1) % roles.length;
+      el.style.opacity = 0;
+      setTimeout(() => {
+        el.textContent = roles[i];
+        el.style.opacity = 1;
+      }, 220);
+    }, 2600);
   }
 
   // --------------------------------------------------------------------
@@ -360,6 +383,7 @@
   function boot() {
     initTheme();
     renderMasthead();
+    initRoleCycler();
     renderAbout();
     renderExperience();
     renderSkills();

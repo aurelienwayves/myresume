@@ -36,14 +36,15 @@
 
 /* ---------- masthead ---------- */
 .masthead{
-  max-width: 1180px; margin: 0 auto; padding: 2.4rem var(--gutter) 1.8rem;
+  max-width: 1180px; margin: 0 auto; padding: 2.2rem var(--gutter) 1.7rem;
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
-    "photo id      kpis"
-    "photo tagline kpis"
-    "photo contact kpis";
-  column-gap: 1.8rem; row-gap: .55rem;
+    "photo id       kpis"
+    "photo tagline  kpis"
+    "photo passions kpis"
+    "photo contact  kpis";
+  column-gap: 1.8rem; row-gap: .5rem;
   align-items: start;
   border-bottom: 2px solid var(--accent-strong);
 }
@@ -58,10 +59,18 @@
 .masthead-photo img{ width: 100%; height: 100%; object-fit: cover; }
 .masthead-id{ grid-area: id; }
 .masthead-id h1{ font-size: clamp(1.7rem, 2.8vw, 2.15rem); line-height: 1.08; margin: 0; }
-.masthead-role{ font-family: var(--font-mono); font-size: .84rem; color: var(--accent-strong); font-weight: 600; margin: .3rem 0 0; }
-.masthead-location{ font-size: .84rem; color: var(--ink-faint); margin: .2rem 0 0; }
-.masthead-tagline{ grid-area: tagline; font-size: .92rem; color: var(--ink-soft); margin: .35rem 0 0; max-width: 60ch; line-height: 1.6; }
-.masthead-contact{ grid-area: contact; display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .65rem; }
+.masthead-role{
+  display: flex; align-items: center; gap: .5em;
+  font-family: var(--font-mono); font-size: .84rem; color: var(--accent-strong); font-weight: 600; margin: .35rem 0 0;
+}
+.role-dot{ width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: none; }
+.masthead-location{
+  display: flex; align-items: center; gap: .4em;
+  font-size: .84rem; color: var(--ink-faint); margin: .25rem 0 0;
+}
+.masthead-tagline{ grid-area: tagline; font-size: .9rem; color: var(--ink-soft); margin: .35rem 0 0; max-width: 60ch; line-height: 1.6; }
+.masthead-passions{ grid-area: passions; display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+.masthead-contact{ grid-area: contact; display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .6rem; }
 .masthead-contact a, .masthead-contact span{
   display: inline-flex; align-items: center; gap: .4em;
   font-size: .8rem; font-weight: 600; color: var(--ink-soft);
@@ -102,8 +111,8 @@
 .col-side{ padding: 0 0 1.4rem; }
 .col-title{
   display: flex; align-items: center; gap: .55em;
-  font-size: 1.02rem; font-weight: 800; color: var(--ink);
-  margin: 2.4rem 0 1.1rem; padding-bottom: .55rem;
+  font-size: .96rem; font-weight: 800; color: var(--ink);
+  margin: 2rem 0 .9rem; padding-bottom: .5rem;
   border-bottom: 2px solid var(--accent);
 }
 .col-title::before{
@@ -111,11 +120,16 @@
   background: var(--accent);
 }
 .col-title:first-child{ margin-top: 0; }
-.col-block{ font-size: .92rem; }
-.col-block p{ font-size: .92rem; }
+.col-block{ font-size: .86rem; }
+.col-block p{ font-size: .86rem; }
 
 /* ---------- about (compact) ---------- */
-.c-about-text p{ margin: 0 0 .8em; line-height: 1.65; color: var(--ink-soft); }
+.c-about-text{
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md);
+  padding: 1.1rem 1.3rem;
+}
+.c-about-text p{ margin: 0 0 .75em; line-height: 1.6; color: var(--ink-soft); }
+.c-about-text p:last-child{ margin-bottom: 0; }
 
 /* ---------- experience rows (role-level collapse, card style) ---------- */
 .role-row{
@@ -148,18 +162,23 @@
   padding: 0 1.3rem;
   transition: max-height .32s var(--ease), opacity .25s var(--ease);
 }
-.role-row.is-open .role-detail{ max-height: 2400px; opacity: 1; padding-bottom: 1.3rem; }
-.role-detail-context{ font-size: .86rem; color: var(--ink-soft); margin: 0 0 .9rem; line-height: 1.6; border-top: 1px solid var(--line); padding-top: 1rem; }
-.role-bullets{ display: flex; flex-direction: column; gap: .9rem; }
-.role-bullet-text{ font-size: .88rem; line-height: 1.6; color: var(--ink); margin: 0 0 .5rem; }
-.role-bullet img.exp-bullet-photo{ max-width: 260px; border-radius: var(--radius-sm); }
-.role-bullet .skill-chips{ gap: .45rem; }
+.role-row.is-open .role-detail{ max-height: 2400px; opacity: 1; padding-bottom: 1.1rem; }
+.role-detail-context{ font-size: .84rem; color: var(--ink-soft); margin: 0 0 .7rem; line-height: 1.55; border-top: 1px solid var(--line); padding-top: .85rem; }
+.role-bullets{ display: flex; flex-direction: column; gap: .55rem; }
+.role-bullet{ border-top: 1px solid var(--line); padding-top: .55rem; }
+.role-bullet:first-child{ border-top: none; padding-top: 0; }
+.role-bullet-text{ font-size: .84rem; line-height: 1.55; color: var(--ink); margin: 0 0 .4rem; }
+.role-bullet img.exp-bullet-photo{ max-width: 220px; border-radius: var(--radius-sm); }
+.role-bullet .skill-chips{ gap: .35rem; }
+.role-bullet .skill-chip{ padding: .32em .75em; font-size: .74rem; }
 
 /* ---------- skills (dense cloud) ---------- */
-.skills-compact-group{ margin-bottom: 1.3rem; }
+.skills-compact-group{ margin-bottom: .85rem; }
 .skills-compact-group:last-child{ margin-bottom: 0; }
-.scg-label{ font-weight: 700; font-size: .8rem; color: var(--ink-faint); display: block; margin-bottom: .55rem; }
-.skills-compact-group .skill-chips{ gap: .45rem; }
+.scg-label{ font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: .03em; color: var(--ink-faint); display: block; margin-bottom: .4rem; }
+.skills-compact-group .skill-chips{ gap: .32rem; }
+.skills-compact-group .skill-chip{ padding: .3em .7em; font-size: .72rem; }
+.skills-compact-group .skill-chip::after{ width: 5px; height: 5px; }
 
 /* ---------- education (compact, card style) ---------- */
 .edu-compact-item{
@@ -229,6 +248,7 @@
     grid-template-areas:
       "photo id"
       "tagline tagline"
+      "passions passions"
       "kpis kpis"
       "contact contact";
   }
