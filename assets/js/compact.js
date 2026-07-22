@@ -136,9 +136,12 @@
           <div class="role-bullets">
             ${exp.bullets.map((b) => `
               <div class="role-bullet">
-                <p class="role-bullet-text">${b.text}</p>
-                ${b.image ? `<img class="exp-bullet-photo" src="${b.image}" alt="" loading="lazy">` : ""}
-                <div class="skill-chips">${b.skills.map((id) => skillChipHTML(id, true)).join("")}</div>
+                <span class="role-bullet-dot"></span>
+                <div class="role-bullet-body">
+                  <p class="role-bullet-text">${b.text}</p>
+                  ${b.image ? `<img class="exp-bullet-photo" src="${b.image}" alt="" loading="lazy">` : ""}
+                  <div class="skill-chips">${b.skills.map((id) => skillChipHTML(id, true)).join("")}</div>
+                </div>
               </div>
             `).join("")}
           </div>

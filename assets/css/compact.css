@@ -8,6 +8,9 @@
 
 .cwrap{ max-width: 1180px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
 
+/* this edition's chips never carry the little clickability dot the full site uses */
+.skill-chip::after{ display: none; }
+
 /* ---------- top bar ---------- */
 .cbar{
   border-bottom: 1px solid var(--line);
@@ -36,17 +39,17 @@
 
 /* ---------- masthead ---------- */
 .masthead{
-  max-width: 1180px; margin: 0 auto; padding: 2.2rem var(--gutter) 1.7rem;
+  max-width: 1180px; margin: 0 auto; padding: 2.2rem var(--gutter) 1.9rem;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr);
   grid-template-areas:
-    "photo id       kpis"
-    "photo tagline  kpis"
-    "photo passions kpis"
-    "photo contact  kpis";
+    "photo id"
+    "photo tagline"
+    "photo passions"
+    "photo contact"
+    "kpis  kpis";
   column-gap: 1.8rem; row-gap: .5rem;
   align-items: start;
-  border-bottom: 2px solid var(--accent-strong);
 }
 .masthead-photo{
   grid-area: photo;
@@ -57,6 +60,7 @@
   border: 3px solid var(--surface); box-shadow: var(--shadow-md);
 }
 .masthead-photo img{ width: 100%; height: 100%; object-fit: cover; }
+.masthead-id, .masthead-tagline, .masthead-passions, .masthead-contact, .masthead-kpis{ min-width: 0; }
 .masthead-id{ grid-area: id; }
 .masthead-id h1{ font-size: clamp(1.7rem, 2.8vw, 2.15rem); line-height: 1.08; margin: 0; }
 .masthead-role{
@@ -77,6 +81,7 @@
   text-decoration: none; border: 1px solid var(--line-strong); border-radius: 999px;
   background: var(--surface);
   padding: .38em .85em;
+  max-width: 100%; overflow-wrap: anywhere;
   transition: border-color .18s var(--ease), color .18s var(--ease);
 }
 .masthead-contact svg{ width: 13px; height: 13px; }
@@ -84,19 +89,19 @@
 
 .masthead-kpis{
   grid-area: kpis;
-  display: grid; grid-template-columns: repeat(2, minmax(96px,1fr)); gap: .55rem;
-  align-self: center;
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .6rem;
+  margin-top: 1.5rem;
 }
 .mk-card{
-  text-align: center; padding: .6em .5em;
+  text-align: center; padding: .65em .5em;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
 }
-.mk-value{ font-family: var(--font-mono); font-weight: 700; font-size: 1.1rem; color: var(--accent-strong); }
-.mk-label{ font-size: .68rem; color: var(--ink-faint); line-height: 1.3; margin-top: .2rem; }
+.mk-value{ font-family: var(--font-mono); font-weight: 700; font-size: 1.05rem; color: var(--accent-strong); }
+.mk-label{ font-size: .65rem; color: var(--ink-faint); line-height: 1.28; margin-top: .2rem; }
 
 .direction-strip{
-  max-width: 1180px; margin: 1.4rem auto 0; padding: 0 var(--gutter);
+  max-width: 1180px; margin: 1.4rem auto 1.8rem; padding: 0 var(--gutter);
 }
 .direction-strip-inner{
   background: var(--focus-tint);
@@ -116,7 +121,7 @@
   max-width: 1180px; margin: 0 auto; padding: .4rem var(--gutter) 3rem;
   display: grid; grid-template-columns: 1.5fr 1fr; column-gap: 3rem;
 }
-.col-main{ padding: 0 0 1.4rem; border-right: 1px solid var(--line); }
+.col-main{ padding: 0 0 1.4rem; }
 .col-side{ padding: 0 0 1.4rem; }
 .col-title{
   display: flex; align-items: center; gap: .55em;
@@ -173,13 +178,21 @@
   transition: max-height .32s var(--ease), opacity .25s var(--ease);
 }
 .role-row.is-open .role-detail{ max-height: 2400px; opacity: 1; padding-bottom: 1rem; }
-.role-bullets{ display: flex; flex-direction: column; gap: .5rem; border-top: 1px solid var(--line); padding-top: .6rem; }
-.role-bullet{ border-top: 1px solid var(--line); padding-top: .5rem; }
-.role-bullet:first-child{ border-top: none; padding-top: 0; }
-.role-bullet-text{ font-size: .8rem; line-height: 1.5; color: var(--ink); margin: 0 0 .35rem; }
+.role-bullets{
+  display: flex; flex-direction: column; gap: .6rem;
+  padding-top: .7rem; margin-top: .1rem;
+  border-top: 1px solid color-mix(in srgb, var(--line) 65%, transparent);
+}
+.role-bullet{ display: flex; align-items: flex-start; gap: .6em; }
+.role-bullet-dot{
+  flex: none; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent); margin-top: .55em;
+}
+.role-bullet-body{ flex: 1; min-width: 0; }
+.role-bullet-text{ font-size: .77rem; line-height: 1.48; color: var(--ink); margin: 0 0 .3rem; }
 .role-bullet img.exp-bullet-photo{ max-width: 220px; border-radius: var(--radius-sm); }
-.role-bullet .skill-chips{ gap: .35rem; }
-.role-bullet .skill-chip{ padding: .32em .75em; font-size: .74rem; }
+.role-bullet .skill-chips{ gap: .32rem; }
+.role-bullet .skill-chip{ padding: .3em .7em; font-size: .72rem; }
 
 /* ---------- skills (dense cloud) ---------- */
 .skills-compact-group{ margin-bottom: .85rem; }
@@ -187,7 +200,6 @@
 .scg-label{ font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: .03em; color: var(--ink-faint); display: block; margin-bottom: .4rem; }
 .skills-compact-group .skill-chips{ gap: .32rem; }
 .skills-compact-group .skill-chip{ padding: .3em .7em; font-size: .72rem; }
-.skills-compact-group .skill-chip::after{ width: 5px; height: 5px; }
 
 /* ---------- education (compact, card style) ---------- */
 .edu-compact-item{
@@ -252,22 +264,13 @@
 
 /* ---------- responsive ---------- */
 @media (max-width: 900px){
-  .masthead{
-    grid-template-columns: auto 1fr;
-    grid-template-areas:
-      "photo id"
-      "tagline tagline"
-      "passions passions"
-      "kpis kpis"
-      "contact contact";
-  }
-  .masthead-kpis{ grid-template-columns: repeat(3, 1fr); margin-top: .4rem; }
+  .masthead-kpis{ grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 1.2rem; }
   .newspaper-grid{ grid-template-columns: 1fr; }
-  .col-main{ border-right: none; border-bottom: 1px solid var(--line); padding: 0 0 .6rem; }
+  .col-main{ border-bottom: 1px solid var(--line); padding: 0 0 .6rem; }
   .col-side{ padding: .2rem 0 0; }
 }
 @media (max-width: 560px){
   .masthead{ padding-top: 1.8rem; }
   .masthead-photo{ width: 84px; height: 84px; }
-  .masthead-kpis{ grid-template-columns: repeat(2, 1fr); }
+  .masthead-kpis{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
