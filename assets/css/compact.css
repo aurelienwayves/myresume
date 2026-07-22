@@ -84,21 +84,30 @@
 
 .masthead-kpis{
   grid-area: kpis;
-  display: grid; grid-template-columns: repeat(3, minmax(88px,1fr)); gap: .6rem;
+  display: grid; grid-template-columns: repeat(2, minmax(96px,1fr)); gap: .55rem;
   align-self: center;
 }
 .mk-card{
-  text-align: center; padding: .7em .5em;
+  text-align: center; padding: .6em .5em;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
 }
-.mk-value{ font-family: var(--font-mono); font-weight: 700; font-size: 1.15rem; color: var(--accent-strong); }
-.mk-label{ font-size: .7rem; color: var(--ink-faint); line-height: 1.35; margin-top: .2rem; }
+.mk-value{ font-family: var(--font-mono); font-weight: 700; font-size: 1.1rem; color: var(--accent-strong); }
+.mk-label{ font-size: .68rem; color: var(--ink-faint); line-height: 1.3; margin-top: .2rem; }
 
 .direction-strip{
-  max-width: 1180px; margin: 1.4rem auto 0; padding: .9rem var(--gutter);
-  background: var(--accent-tint);
-  font-size: .88rem; color: var(--ink-soft); line-height: 1.55;
+  max-width: 1180px; margin: 1.4rem auto 0; padding: 0 var(--gutter);
+}
+.direction-strip-inner{
+  background: var(--focus-tint);
+  border: 1px solid color-mix(in srgb, var(--focus) 35%, var(--line));
+  border-radius: var(--radius-md);
+  padding: 1rem 1.3rem;
+}
+.direction-strip-inner .eyebrow{ color: var(--focus); margin-bottom: .5rem; }
+.direction-strip-inner .eyebrow::before{ background: var(--focus); }
+.direction-strip-inner p:last-child{
+  margin: 0; font-size: .84rem; color: var(--ink); line-height: 1.55;
 }
 .direction-strip strong{ color: var(--focus); font-weight: 700; }
 
@@ -126,9 +135,9 @@
 /* ---------- about (compact) ---------- */
 .c-about-text{
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md);
-  padding: 1.1rem 1.3rem;
+  padding: 1rem 1.2rem;
 }
-.c-about-text p{ margin: 0 0 .75em; line-height: 1.6; color: var(--ink-soft); }
+.c-about-text p{ font-size: .8rem; margin: 0 0 .7em; line-height: 1.55; color: var(--ink-soft); }
 .c-about-text p:last-child{ margin-bottom: 0; }
 
 /* ---------- experience rows (role-level collapse, card style) ---------- */
@@ -139,19 +148,20 @@
 }
 .role-row:last-child{ margin-bottom: 0; }
 .role-row.is-open{ border-color: var(--accent); box-shadow: var(--shadow-sm); }
+
+.role-head-block{ padding: 1rem 1.2rem 0; }
+.role-head{ display: flex; justify-content: space-between; gap: .6rem; flex-wrap: wrap; }
+.role-title{ font-size: .94rem; font-weight: 700; }
+.role-meta{ font-family: var(--font-mono); font-size: .72rem; color: var(--ink-faint); white-space: nowrap; }
+.role-org{ font-size: .8rem; color: var(--accent-strong); font-weight: 600; margin-top: .15rem; }
+.role-context-full{ font-size: .8rem; color: var(--ink-soft); margin: .5rem 0 0; line-height: 1.5; }
+.role-context-full a{ color: var(--accent-strong); text-decoration: underline; text-underline-offset: 2px; }
+
 .role-toggle{
   display: block; width: 100%; text-align: left; background: none; border: none; cursor: pointer;
-  padding: 1.05rem 1.3rem; font-family: inherit; color: var(--ink);
+  padding: .7rem 1.2rem; font-family: inherit; color: var(--ink);
 }
-.role-head{ display: flex; justify-content: space-between; gap: .6rem; flex-wrap: wrap; }
-.role-title{ font-size: .98rem; font-weight: 700; }
-.role-meta{ font-family: var(--font-mono); font-size: .74rem; color: var(--ink-faint); white-space: nowrap; }
-.role-org{ font-size: .82rem; color: var(--accent-strong); font-weight: 600; margin-top: .15rem; }
-.role-context{
-  font-size: .86rem; color: var(--ink-faint); margin-top: .4rem;
-  display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
-}
-.role-count{ display: inline-flex; align-items: center; gap: .35em; font-size: .78rem; font-weight: 700; color: var(--focus); margin-top: .6rem; }
+.role-count{ display: inline-flex; align-items: center; gap: .35em; font-size: .76rem; font-weight: 700; color: var(--focus); }
 .role-count svg{ width: 12px; height: 12px; transition: transform .2s var(--ease); }
 .role-row.is-open .role-count svg{ transform: rotate(90deg); }
 
@@ -159,15 +169,14 @@
 
 .role-detail{
   overflow: hidden; max-height: 0; opacity: 0;
-  padding: 0 1.3rem;
+  padding: 0 1.2rem;
   transition: max-height .32s var(--ease), opacity .25s var(--ease);
 }
-.role-row.is-open .role-detail{ max-height: 2400px; opacity: 1; padding-bottom: 1.1rem; }
-.role-detail-context{ font-size: .84rem; color: var(--ink-soft); margin: 0 0 .7rem; line-height: 1.55; border-top: 1px solid var(--line); padding-top: .85rem; }
-.role-bullets{ display: flex; flex-direction: column; gap: .55rem; }
-.role-bullet{ border-top: 1px solid var(--line); padding-top: .55rem; }
+.role-row.is-open .role-detail{ max-height: 2400px; opacity: 1; padding-bottom: 1rem; }
+.role-bullets{ display: flex; flex-direction: column; gap: .5rem; border-top: 1px solid var(--line); padding-top: .6rem; }
+.role-bullet{ border-top: 1px solid var(--line); padding-top: .5rem; }
 .role-bullet:first-child{ border-top: none; padding-top: 0; }
-.role-bullet-text{ font-size: .84rem; line-height: 1.55; color: var(--ink); margin: 0 0 .4rem; }
+.role-bullet-text{ font-size: .8rem; line-height: 1.5; color: var(--ink); margin: 0 0 .35rem; }
 .role-bullet img.exp-bullet-photo{ max-width: 220px; border-radius: var(--radius-sm); }
 .role-bullet .skill-chips{ gap: .35rem; }
 .role-bullet .skill-chip{ padding: .32em .75em; font-size: .74rem; }

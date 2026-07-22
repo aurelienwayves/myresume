@@ -121,17 +121,18 @@
     const count = exp.bullets.length;
     return `
       <article class="role-row" id="c-exp-${exp.id}">
-        <button type="button" class="role-toggle" aria-expanded="false">
+        <div class="role-head-block">
           <div class="role-head">
             <span class="role-title">${exp.title}</span>
             <span class="role-meta">${exp.period}</span>
           </div>
           <div class="role-org">${exp.org} · ${exp.location}</div>
-          <div class="role-context">${stripTags(exp.context)}</div>
+          <p class="role-context-full">${exp.context}</p>
+        </div>
+        <button type="button" class="role-toggle" aria-expanded="false">
           <span class="role-count">${ICONS.chevron} ${count} highlight${count === 1 ? "" : "s"}</span>
         </button>
         <div class="role-detail">
-          <p class="role-detail-context">${exp.context}</p>
           <div class="role-bullets">
             ${exp.bullets.map((b) => `
               <div class="role-bullet">
@@ -143,12 +144,6 @@
           </div>
         </div>
       </article>`;
-  }
-
-  function stripTags(html) {
-    const div = document.createElement("div");
-    div.innerHTML = html;
-    return div.textContent || "";
   }
 
   function renderExperience() {
